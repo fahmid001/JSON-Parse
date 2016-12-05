@@ -1,0 +1,20 @@
+Multiple JSON Data Parse From Controller using Array:
+ 
+$outputData = array (
+            	'titletext' => 'Global Trend for: ' . $titletext,
+            	'graphdata' => $data
+            );
+	print (json_encode($outputData));
+
+Receve JSON Data in view:
+        
+			$.ajax({
+                        type: "POST",
+                        url: "<?php echo site_url('dabi/analysis/getSavingData'); ?>",
+                        data: datastring,
+                        success: function(responseData) {
+                            var response_json_data = JSON.parse(responseData);
+                            var graphData = response_json_data.graphdata;
+                            var titletext = response_json_data.titletext;
+			}
+		     })
